@@ -12,6 +12,6 @@ class Page extends CI_Controller
 
 	public function index()
 	{
-		echo "helloworld";
+		$this->load->view('themes/bootstrap/application.php');
 	}
 }
