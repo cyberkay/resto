@@ -13,7 +13,9 @@ class Page extends CI_Controller
 
 	public function index()
 	{
-		$this->my_security->loggedin();
-		$this->load->view('themes/bootstrap/application.php');
+		$this->secure->loggedin();
+		$data['title'] = 'Dashboard';
+		$data['content'] = 'pages/dashboard';
+		$this->load->view(THEME . 'application', $data);
 	}
 }
