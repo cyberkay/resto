@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 * Security Library
 */
 
-class My_Security
+class Secure
 {
 	protected $CI;
 
@@ -16,10 +16,8 @@ class My_Security
 	}
 	public function loggedin()
 	{
-		if (isset($this->session->user_id)) {
-			echo "loggedin";
-		} else {
-			redirect('/user');
+		if (!isset($_SESSION['res_user_id'])) {
+			redirect('/user/login?redirect=' . current_url());
 		}
 		
 	}
