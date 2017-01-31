@@ -3,7 +3,7 @@
 	        <li><a href="#">Akun</a></li>
 	        <li><a href="#">Pegawai</a></li>
 	        <li><a href="#">Beban Gaji</a></li>
-	        <li><a href="#">Daftar Menu</a></li>
+	        <li><a href="<?= base_url('menus') ?>">Daftar Menu</a></li>
 	        <li><a href="#">Pesanan</a></li>
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Laporan<span class="caret"></span></a>
