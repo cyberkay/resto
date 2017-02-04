@@ -7,16 +7,15 @@
 		    	<a href="<?= base_url('menu/makanan') ?>"><span class="glyphicon glyphicon-list-alt"></span></a>
 		    </span>
 	    </h3>
-	    
 	  </div>
 	  <div class="panel-body">
 	  	<div class="col-md-9">
 	  		<div class="row">
-	  			<div class="col-md-4"><input type="text" name="menu_code" class="form-control" placeholder="kode makanan required" REQUIRED></div>
-	  			<div class="col-md-8"><input type="text" name="menu_name" class="form-control" placeholder="nama makanan required" REQUIRED></div>
+	  			<div class="col-md-4"><input type="text" name="menu_code" class="form-control" minlength="4" maxlength="12" placeholder="kode makanan required" REQUIRED></div>
+	  			<div class="col-md-8"><input type="text" name="menu_name" class="form-control" minlength="2" maxlength="24" placeholder="nama makanan required" REQUIRED></div>
 	  		</div>
 	  		<br>
-	  		<textarea class="form-control" name="menu_desc" placeholder="Deskripsi Makanan"></textarea>
+	  		<textarea class="form-control" name="menu_desc" rows="13" placeholder="Deskripsi Makanan">Deskripsi Makanan</textarea>
 	  		<br>
 	  		<button type="submit" class="btn btn-success">Save</button>
 	  		<a href="<?= base_url('/') ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
@@ -36,16 +35,21 @@
 	  		<!-- photo -->
 	  		<br>
 	  		<hr>
-	  		Jenis : <input type="hidden" name="menu_jenis" value="makanan">Makanan
-	  		<hr>
-	  		Harga : 
 	  		<div class="row">
-	  			<div class="col-md-6"><input type="number" name="menu_harga_modal" class="form-control" placeholder="Harga Modal"></div>
+	  			<div class="col-md-6">Jenis : </div>
+	  			<div class="col-md-6" align="right"><input type="hidden" name="menu_jenis" value="makanan">Makanan</div>
+	  		</div>
+	  		<hr>
+	  		<div class="row">
+	  			<div class="col-md-3">Harga : </div>
+	  			<div class="col-md-3" align="right">Rp </div>
 	  			<div class="col-md-6"><input type="number" name="menu_harga_jual" class="form-control" placeholder="Harga Jual"></div>
 	  		</div>
 	  		<br>
-	  		Stok : <br>
-	  		<input type="number" name="menu_stok" class="form-control" placeholder="Stok">
+	  		<div class="row">
+	  			<div class="col-md-6">Stok : </div>
+	  			<div class="col-md-6"><input type="number" name="menu_stok" class="form-control" placeholder="Stok"></div>
+	  		</div>
 	  	</div>
 	  </div>
 	</div>

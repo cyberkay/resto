@@ -10,7 +10,7 @@
 	    
 	  </div>
 	  <div class="panel-body">
-	    <table class="table">
+	    <table class="table" id="datatables">
 	    	<thead>
 	    	<tr>
 	    		<th>No</th>

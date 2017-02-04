@@ -28,6 +28,15 @@ class Menu extends CI_Controller
 		$this->load->view(THEME . 'application', $data);
 	}
 
+	public function minuman()
+	{
+		$this->secure->loggedin();
+		$data['title'] = 'Daftar Menu';
+		$data['content'] = 'menus/minuman';
+		$data['menus'] = $this->menu->get_menu_all();
+		$this->load->view(THEME . 'application', $data);
+	}
+
 	public function makanan_add()
 	{
 		$this->secure->loggedin();
@@ -68,18 +77,7 @@ class Menu extends CI_Controller
 					$this->load->view(THEME . 'application', $data);
 				}
         }
-		
-		
-		
-
 	}
 
-	public function minuman()
-	{
-		$this->secure->loggedin();
-		$data['title'] = 'Daftar Menu';
-		$data['content'] = 'menus/minuman';
-		$this->load->view(THEME . 'application', $data);
-	}
 }
  ?>
