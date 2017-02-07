@@ -5,6 +5,7 @@
 <body>
 	<?php $this->load->view($path . 'header');  ?>
 	<?= $this->session->flashdata('alert'); ?>
+	<?= (isset($alert)) ? $alert : '' ; ?>
 	<!-- main content -->
 	<?php isset($content) ? $this->load->view($content) : '<center>empty</center>'; ?>
 

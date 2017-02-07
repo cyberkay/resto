@@ -15,16 +15,19 @@ class Menus_m extends CI_Model {
                 parent::__construct();
         }
 
-        public function get_user($username, $password)
+        public function get_menu($code)
         {
-                $this->db->where('username', $username);
-                $this->db->where('password', md5($password));
-                $query = $this->db->get('users');
+                $this->db->where('menu_code', $code);
+                $query = $this->db->get('menus');
                 return $query->row();
         }
 
-        public function get_menu_all()
+        public function get_menu_all($field='', $value='')
         {
+                if ($field != "") {
+                        $this->db->where($field, $value);
+                }
+                
                 $query = $this->db->get('menus');
                 return $query->result();
         }
@@ -36,13 +39,19 @@ class Menus_m extends CI_Model {
                 return $query;
         }
 
-        public function update_entry()
+        public function update($code)
         {
-                $this->title    = $_POST['title'];
-                $this->content  = $_POST['content'];
-                $this->date     = time();
+                $this->db->where('menu_code', $code);
+                $query = $this->db->update('menus', $_POST);
+                return $query;
+        }
 
-                $this->db->update('entries', $this, array('id' => $_POST['id']));
+        public function delete($id)
+        {
+                $this->db->where('menu_code', $id);
+                $query = $this->db->delete('menus');
+
+                return $query;
         }
 
 }

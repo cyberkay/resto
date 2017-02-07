@@ -9,6 +9,9 @@
 	<script type="text/javascript">
 		$(document).ready(function(){
 		    $('#datatables').DataTable();
+		    tinymce.init({
+			  selector: 'textarea'  // change this value according to your HTML
+			});
 		});
 	</script>
 </html>

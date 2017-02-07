@@ -4,7 +4,7 @@
 	  <div class="panel-heading">
 	    <h3 class="panel-title">Makanan
 	    	<span class="pull-right">
-		    	<a href="<?= base_url('menu/makanan_add') ?>"><span class="glyphicon glyphicon-plus"></span></a>
+		    	<a href="<?= base_url('menu/makanan_add') ?>" title="tambah menu makanan"><span class="glyphicon glyphicon-plus"></span></a>
 		    </span>
 	    </h3>
 	    
@@ -28,7 +28,13 @@
 	    		<td><?= $row->menu_code; ?></td>
 	    		<td><?= $row->menu_name; ?></td>
 	    		<td><?= $row->menu_harga_jual; ?></td>
-	    		<td>view edit delete</td>
+	    		<td align="center">
+	    			<a href="<?= base_url('menu/view/') ?>/<?= $row->menu_code; ?>" title="view"><button class="btn btn-info"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button></a>
+	    			
+	    			<a href="<?= base_url('menu/edit/') ?>/<?= $row->menu_code; ?>" title="edit"><button class="btn btn-warning"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button></a>
+	    			
+	    			<a href="<?= base_url('menu/delete/') ?>/<?= $row->menu_code; ?><?= '?redirect=' . current_url(); ?>" title="delete" onclick="return confirm('Anda ingin menghapusnya ?');"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></a>
+	    		</td>
 	    	</tr>
 	    	<?php } ?>
 	    	</tbody>
