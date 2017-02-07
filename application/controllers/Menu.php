@@ -42,7 +42,7 @@ class Menu extends CI_Controller
 		$this->secure->loggedin();
 		$data['title'] = 'Daftar Menu';
 		$data['content'] = 'menus/makanan';
-		$data['menus'] = $this->menu->get_menu_all();
+		$data['menus'] = $this->menu->get_menu_all('menu_jenis', 'makanan');
 		$this->load->view(THEME . 'application', $data);
 	}
 
@@ -51,7 +51,7 @@ class Menu extends CI_Controller
 		$this->secure->loggedin();
 		$data['title'] = 'Daftar Menu';
 		$data['content'] = 'menus/minuman';
-		$data['menus'] = $this->menu->get_menu_all();
+		$data['menus'] = $this->menu->get_menu_all('menu_jenis', 'minuman');
 		$this->load->view(THEME . 'application', $data);
 	}
 
@@ -63,12 +63,20 @@ class Menu extends CI_Controller
 		$this->load->view(THEME . 'application', $data);
 	}
 
-	public function makanan_save()
+	public function minuman_add()
+	{
+		$this->secure->loggedin();
+		$data['title'] = 'Add Minuman';
+		$data['content'] = 'menus/minuman_add';
+		$this->load->view(THEME . 'application', $data);
+	}
+
+	public function save()
 	{
 		$this->secure->loggedin();
 		$data['title'] = 'Save Makanan';
 
-		$config['upload_path']          = 'assets/images/uploads/';
+		$config['upload_path']          = 'assets/images/menus/';
         $config['allowed_types']        = 'gif|jpg|png';
 
         $this->load->library('upload', $config);

@@ -2,7 +2,7 @@
 	<form action="<?= base_url('menu/save'); ?><?= '?redirect=' . current_url(); ?>" method="POST" enctype="multipart/form-data">
  	<div class="panel panel-default">
 	  <div class="panel-heading">
-	    <h3 class="panel-title">Makanan Add
+	    <h3 class="panel-title">Minuman Add
 	    	<span class="pull-right">
 		    	<a href="<?= base_url('menu/makanan') ?>"><span class="glyphicon glyphicon-list-alt"></span></a>
 		    </span>
@@ -15,7 +15,7 @@
 	  			<div class="col-md-8"><input type="text" name="menu_name" class="form-control" minlength="2" maxlength="24" placeholder="nama makanan required" REQUIRED></div>
 	  		</div>
 	  		<br>
-	  		<textarea class="form-control" name="menu_desc" rows="13" placeholder="Deskripsi Makanan">Deskripsi Makanan</textarea>
+	  		<textarea class="form-control" name="menu_desc" rows="13" placeholder="Deskripsi Minuman">Deskripsi Minuman</textarea>
 	  		<br>
 	  		<button type="submit" class="btn btn-success">Save</button>
 	  		<a href="<?= base_url('/') ?>"><button type="button" class="btn btn-danger">Cancel</button></a>
@@ -37,7 +37,7 @@
 	  		<hr>
 	  		<div class="row">
 	  			<div class="col-md-6">Jenis : </div>
-	  			<div class="col-md-6" align="right"><input type="hidden" name="menu_jenis" value="makanan">Makanan</div>
+	  			<div class="col-md-6" align="right"><input type="hidden" name="menu_jenis" value="minuman">Minuman</div>
 	  		</div>
 	  		<hr>
 	  		<div class="row">
