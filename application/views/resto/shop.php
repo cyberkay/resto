@@ -90,7 +90,7 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
 					      <div class="caption">
 					        <h5><?= $menu->menu_name; ?></h3>
 					        <p>Rp <?= $menu->menu_harga_jual; ?></p>
-					        <p><a href="#" class="btn btn-block btn-primary" role="button">Add</a></p>
+					        <p><a href="<?= base_url('order/insert') ?>/<?= $order->trx_code; ?>/<?= $menu->menu_code; ?>/<?= $menu->menu_harga_jual; ?>" class="btn btn-block btn-primary" role="button">Add</a></p>
 					      </div>
 					    </div>
 					  </div>
@@ -105,7 +105,7 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
 					      <div class="caption">
 					        <h5><?= $menu->menu_name; ?></h3>
 					        <p>Rp <?= $menu->menu_harga_jual; ?></p>
-					        <p><a href="#" class="btn btn-block btn-primary" role="button">Add</a></p>
+					        <p><a href="<?= base_url('order/insert') ?>/<?= $order->trx_code; ?>/<?= $menu->menu_code; ?>/<?= $menu->menu_harga_jual; ?>" class="btn btn-block btn-primary" role="button">Add</a></p>
 					      </div>
 					    </div>
 					  </div>
@@ -121,7 +121,7 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
 						      <div class="caption">
 						        <h5><?= $menu->menu_name; ?></h3>
 						        <p>Rp <?= $menu->menu_harga_jual; ?></p>
-						        <p><a href="#" class="btn btn-block btn-primary" role="button">Add</a></p>
+						        <p><a href="<?= base_url('order/insert') ?>/<?= $order->trx_code; ?>/<?= $menu->menu_code; ?>/<?= $menu->menu_harga_jual; ?>" class="btn btn-block btn-primary" role="button">Add</a></p>
 						      </div>
 						    </div>
 						  </div>
@@ -134,37 +134,35 @@ div.bhoechie-tab div.bhoechie-tab-content:not(.active){
 	
 	<div class="panel panel-default">
 	  <div class="panel-heading">
-	    <h3 class="panel-title">List of Order <p class="pull-right">No. P212</p></h3>
+	    <h3 class="panel-title">List of Order <p class="pull-right">No. <?= $order->trx_code; ?></p></h3>
 	  </div>
 	  <div class="panel-body">
-	    User : Guest
-	  	<p class="pull-right"><?= date("Y-m-d H:i:s") ?></p>
+	    Kasir : <?= $order->name; ?>
+	  	<p class="pull-right"><?= $order->trx_date; ?></p>
 	  	<hr>
+	  	<?php $subtotal=0; foreach ($items as $get) { ?>
 	  	<div class="row">
-	  		<div class="col-md-6">Menu x 2 </div>
-	  		<div class="col-md-6" align="right">Rp 40.000,-</div>
+	  		<div class="col-md-6"><?= $get->menu_name; ?> <?= $get->td_harga_active; ?> x <?= $get->td_qty; ?> </div>
+	  		<div class="col-md-6" align="right">Rp <?= $jumlah = $get->td_harga_active*$get->td_qty; ?></div>
 	  	</div>
-	  	<div class="row">
-	  		<div class="col-md-6">Drinks x 2 </div>
-	  		<div class="col-md-6" align="right">Rp 20.000,-</div>
-	  	</div>
-	  	<div class="row">
-	  		<div class="col-md-6">Rice x 3 </div>
-	  		<div class="col-md-6" align="right">Rp 25.000,</div>
-	  	</div>
+	  	<?php $subtotal = $subtotal+$jumlah; } ?>
 	  	<hr>
 	  	<div class="row">
 	  		<div class="col-md-6">Sub total</div>
-	  		<div class="col-md-6" align="right">Rp 85.000,-</div>
+	  		<div class="col-md-6" align="right">Rp <?= $subtotal; ?></div>
 	  	</div>
 	  	<div class="row">
 	  		<div class="col-md-6">Tax 10%</div>
-	  		<div class="col-md-6" align="right">Rp 8.500,-</div>
+	  		<div class="col-md-6" align="right">Rp <?= $tax = $order->trx_tax; ?></div>
+	  	</div>
+	  	<div class="row">
+	  		<div class="col-md-6">Disc</div>
+	  		<div class="col-md-6" align="right">Rp <?= $disc = $order->trx_disc; ?></div>
 	  	</div>
 	  </div>
 	  <div class="panel-footer">
 	  	Total :
-	  	<p class="pull-right">Rp 93.500,-</p>
+	  	<p class="pull-right">Rp <?= $total = $subtotal + $tax - $disc; ?></p>
 	  </div>
 	</div>
 	<p><a href="#" class="btn btn-block btn-primary" role="button">Checkout</a></p>

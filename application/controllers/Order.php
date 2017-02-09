@@ -8,18 +8,27 @@ class Order extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->model('orders_m','order');
 		$this->load->model('menus_m','menu');
 	}
 
 	public function index()
 	{
 		$this->secure->loggedin();
-		$data['title'] = 'Daftar Menu';
-		$data['content'] = 'menus/list';
-		$this->load->view(THEME . 'application', $data);
+		$label 	= "P";
+		$kode	= $this->order->last() + 1;
+		$no_order 	= $label . date("Y") . date("m") . date("d") . $kode;
+		$user 	= $this->session->userdata('res_user_id');
+		
+
+		if ($this->order->create($no_order, $user)) {
+			redirect('order/shop/' . $no_order);
+		} else {
+			echo "Opss, Something went wrong!!!";
+		}
 	}
 
-	public function shop()
+	public function shop($no_order)
 	{
 		$this->secure->loggedin();
 		$data['title'] = 'Daftar Menu';
@@ -27,16 +36,34 @@ class Order extends CI_Controller
 		$data['menus'] = $this->menu->get_menu_all();
 		$data['makanan'] = $this->menu->get_menu_all('menu_jenis', 'makanan');
 		$data['minuman'] = $this->menu->get_menu_all('menu_jenis', 'minuman');
+
+		$data['order'] = $this->order->get($no_order);
+		$data['items'] = $this->order->get_items($no_order);
 		$this->load->view(THEME . 'application', $data);
 	}
 
-	public function view($code)
+	public function insert($no_order, $menu, $harga)
 	{
 		$this->secure->loggedin();
-		$data['title'] = 'View Menu';
-		$data['content'] = 'menus/view';
-		$data['menu'] = $this->menu->get_menu($code);
-		$this->load->view(THEME . 'application', $data);
+		echo $no_order;
+		$item = $this->order->cek_item($no_order, $menu);
+		if ($item == NULL) {
+			$this->order->insert($no_order, $menu, $harga);
+			$this->session->set_flashdata('alert', '<div class="alert alert-success alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                Menu <b>' . $menu . '</b> telah ditambahkan.
+                            </div>');
+		} else {
+			$qty = $item->td_qty+1;
+			$this->order->add($no_order, $menu, $qty);
+			$this->session->set_flashdata('alert', '<div class="alert alert-success alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                Quantity Menu <b>' . $menu . '</b> telah ditambahkan.
+                            </div>');
+		}
+		
+
+		redirect('order/shop/' . $no_order);
 	}
 
 	public function edit($code)
