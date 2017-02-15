@@ -3,7 +3,6 @@
 <head>
 	<title><?= isset($title) ? $title : 'Resto'; ?></title>
 	<link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="<?= base_url(); ?>assets/css/bootstrap-theme-red.min.css">
 
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?= base_url(); ?>assets/css/jasny-bootstrap.min.css">
