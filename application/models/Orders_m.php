@@ -64,17 +64,25 @@ class Orders_m extends CI_Model {
                 return $query;
         }
 
-        public function update($code)
+        public function cancel($no_order)
+        {
+                $this->trx_status = 'canceled';
+                $this->db->where('trx_code', $no_order);
+                $query = $this->db->update('transaksi', $this);
+                return $query;
+        }
+
+         public function update($code)
         {
                 $this->db->where('menu_code', $code);
                 $query = $this->db->update('menus', $_POST);
                 return $query;
         }
 
-        public function delete($id)
+        public function remove($id)
         {
-                $this->db->where('menu_code', $id);
-                $query = $this->db->delete('menus');
+                $this->db->where('td_id', $id);
+                $query = $this->db->delete('transaksi_detail');
 
                 return $query;
         }

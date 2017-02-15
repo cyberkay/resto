@@ -19,7 +19,7 @@
                 <?php foreach ($menus as $menu) { ?>
                     <div class="col-md-4">
 					    <div class="thumbnail">
-					      <img src="<?= base_url('assets/images/menus/'); ?>/<?= $menu->menu_photo; ?>" height="300" width="300" alt="Image 242x200">
+					      <img src="<?= base_url('assets/images/menus/'); ?>/<?= $menu->menu_photo; ?>" style="height: 200px; width: 200px;" alt="Image 242x200">
 					      <div class="caption">
 					        <h5><?= $menu->menu_name; ?></h3>
 					        <p>Rp <?= $menu->menu_harga_jual; ?></p>
@@ -34,7 +34,7 @@
                     <?php foreach ($makanan as $menu) { ?>
                     <div class="col-md-4">
 					    <div class="thumbnail">
-					      <img src="<?= base_url('assets/images/menus/'); ?>/<?= $menu->menu_photo; ?>" height="300" width="300" alt="Image 242x200">
+					      <img src="<?= base_url('assets/images/menus/'); ?>/<?= $menu->menu_photo; ?>" style="height: 200px; width: 200px;" alt="Image 242x200">
 					      <div class="caption">
 					        <h5><?= $menu->menu_name; ?></h3>
 					        <p>Rp <?= $menu->menu_harga_jual; ?></p>
@@ -50,7 +50,7 @@
                     <?php foreach ($minuman as $menu) { ?>
 	                    <div class="col-md-4">
 						    <div class="thumbnail">
-						      <img src="<?= base_url('assets/images/menus/'); ?>/<?= $menu->menu_photo; ?>" height="300" width="300" alt="Image 242x200">
+						      <img src="<?= base_url('assets/images/menus/'); ?>/<?= $menu->menu_photo; ?>" style="height: 200px; width: 200px;" alt="Image 242x200">
 						      <div class="caption">
 						        <h5><?= $menu->menu_name; ?></h3>
 						        <p>Rp <?= $menu->menu_harga_jual; ?></p>
@@ -64,9 +64,9 @@
         </div>
 
 	<div class="col-md-3">
-	<p><a href="#" class="btn btn-block btn-success" role="button">Checkout</a></p>
+	<p><a href="#" class="btn btn-block btn-success" role="button" data-toggle="modal" data-target="#checkout">Checkout</a></p>
 	<p align="center">--------OR----------</p>
-	<p><a href="#" class="btn btn-block btn-danger" role="button">Cancel</a></p>
+	<p><a href="<?= base_url('order/cancel/'); ?>/<?= $order->trx_code; ?>" onClick="return confirm('Anda ingin membatalkan pesanan ?')" class="btn btn-block btn-danger" role="button">Cancel</a></p>
 	
 	<div class="panel panel-default">
 	  <div class="panel-heading">
@@ -78,8 +78,8 @@
 	  	<hr>
 	  	<?php $subtotal=0; foreach ($items as $get) { ?>
 	  	<div class="row">
-	  		<div class="col-md-6"><?= $get->menu_name; ?> <?= $get->td_harga_active; ?> x <?= $get->td_qty; ?> </div>
-	  		<div class="col-md-6" align="right">Rp <?= $jumlah = $get->td_harga_active*$get->td_qty; ?></div>
+	  		<div class="col-md-6"><?= $get->menu_name; ?><br> <?= $get->td_harga_active; ?> x <?= $get->td_qty; ?> </div>
+	  		<div class="col-md-6" align="right">Rp <?= $jumlah = $get->td_harga_active*$get->td_qty; ?> <br> <a href="<?= base_url('order/remove/') ?>/<?= $get->td_id; ?>/<?= $order->trx_code; ?>" title="Remove <?= $get->menu_name; ?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></div>
 	  	</div>
 	  	<?php $subtotal = $subtotal+$jumlah; } ?>
 	  	<hr>
@@ -105,6 +105,27 @@
 	<br>
 	
 	</div> <!-- end of left widget -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="checkout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Checkout</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 		    $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {

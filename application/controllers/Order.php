@@ -45,7 +45,7 @@ class Order extends CI_Controller
 	public function insert($no_order, $menu, $harga)
 	{
 		$this->secure->loggedin();
-		echo $no_order;
+		//echo $no_order;
 		$item = $this->order->cek_item($no_order, $menu);
 		if ($item == NULL) {
 			$this->order->insert($no_order, $menu, $harga);
@@ -63,6 +63,26 @@ class Order extends CI_Controller
 		}
 		
 
+		redirect('order/shop/' . $no_order);
+	}
+
+	public function cancel($no_order='')
+	{
+		$this->order->cancel($no_order);
+		$this->session->set_flashdata('alert', '<div class="alert alert-success alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                No Nota <b>' . $no_order . '</b> telah dibatalkan.
+                            </div>');
+		redirect('page');
+	}
+
+	public function remove($item='',$no_order='')
+	{
+		$this->order->remove($item);
+		$this->session->set_flashdata('alert', '<div class="alert alert-success alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                Item telah dihapus.
+                            </div>');
 		redirect('order/shop/' . $no_order);
 	}
 
