@@ -19,6 +19,13 @@ class Users_m extends CI_Model {
                 return $query->row();
         }
 
+        public function get_session()
+        {
+                $this->db->where('user_id', $_SESSION['res_user_id']);
+                $query = $this->db->get('users');
+                return $query->row();
+        }
+
         public function get_last_ten_entries()
         {
                 $query = $this->db->get('entries', 10);
