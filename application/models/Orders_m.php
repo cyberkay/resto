@@ -72,6 +72,19 @@ class Orders_m extends CI_Model {
                 return $query;
         }
 
+        public function save($no_order)
+        {
+                $this->trx_status       = 'processing';
+                $this->trx_note         = $_POST['note'];
+                $this->trx_total        = $_POST['total'];
+                $this->trx_bayar        = $_POST['bayar'];
+                $this->trx_kembali      = $_POST['bayar'] - $_POST['total'];
+
+                $this->db->where('trx_code', $no_order);
+                $query = $this->db->update('transaksi', $this);
+                return $query;
+        }
+
          public function update($code)
         {
                 $this->db->where('menu_code', $code);

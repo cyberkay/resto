@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="<?= base_url('assets/css/custom-tabs.css'); ?>">
-	<form method="POST" action="<?= base_url('order/save/'); ?>">
+	<form method="POST" action="<?= base_url('order/save'); ?>/<?= $order->trx_code; ?>">
 		
 
         <div class="col-md-9 bhoechie-tab-container">
@@ -119,6 +119,7 @@
         <h4 class="modal-title" id="myModalLabel">Checkout</h4>
       </div>
       <div class="modal-body" align="center">
+      	<input type="hidden" name="total" value="<?= $total; ?>">
         <h2>Total</h2>
         <h2>Rp <?= number_format($total); ?></h2>
         <div class="row">
