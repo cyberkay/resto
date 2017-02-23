@@ -47,6 +47,17 @@ class Order extends CI_Controller
 		$this->load->view(THEME . 'application', $data);
 	}
 
+	public function nota($no_order)
+	{
+		$this->secure->loggedin();
+		$data['title'] = 'Daftar Menu';
+		$data['content'] = 'resto/nota';
+
+		$data['order'] = $this->order->get($no_order);
+		$data['items'] = $this->order->get_items($no_order);
+		$this->load->view(THEME . 'blank', $data);
+	}
+
 	public function insert($no_order, $menu, $harga)
 	{
 		$this->secure->loggedin();
@@ -101,7 +112,15 @@ class Order extends CI_Controller
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                 No Nota <b>' . $no_order . '</b> telah diproses.
                             </div>');
-					redirect('order');
+					echo "<meta http-equiv='refresh' content='0; URL=" . base_url('order/') . "'>";
+					if (isset($_POST['print'])) {
+						echo "<script>
+						      window.open('" . base_url('order/nota') . "/" . $no_order . "', '_blank');
+						  
+						</script>";
+						echo "Silahkan cetak nota";
+					}
+			
 		}
 	            	
 	}
