@@ -42,48 +42,21 @@ class Pesanan extends CI_Controller
 		redirect('pesanan');
 	}
 
-	public function insert($no_order, $menu, $harga)
+	public function close($no_order='')
 	{
-		$this->secure->loggedin();
-		//echo $no_order;
-		$item = $this->order->cek_item($no_order, $menu);
-		if ($item == NULL) {
-			$this->order->insert($no_order, $menu, $harga);
+		$update = $this->pesanan->close($no_order);
+		if ($update) {
 			$this->session->set_flashdata('alert', '<div class="alert alert-success alert-dismissable">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                Menu <b>' . $menu . '</b> telah ditambahkan.
+                                Pesanan telah di closed.
                             </div>');
 		} else {
-			$qty = $item->td_qty+1;
-			$this->order->add($no_order, $menu, $qty);
-			$this->session->set_flashdata('alert', '<div class="alert alert-success alert-dismissable">
+			$this->session->set_flashdata('alert', '<div class="alert alert-danger alert-dismissable">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                Quantity Menu <b>' . $menu . '</b> telah ditambahkan.
+                                Uppss, status gagal di closed.
                             </div>');
 		}
-		
-
-		redirect('order/shop/' . $no_order);
-	}
-
-	public function cancel($no_order='')
-	{
-		$this->order->cancel($no_order);
-		$this->session->set_flashdata('alert', '<div class="alert alert-success alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                No Nota <b>' . $no_order . '</b> telah dibatalkan.
-                            </div>');
-		redirect('page');
-	}
-
-	public function remove($item='',$no_order='')
-	{
-		$this->order->remove($item);
-		$this->session->set_flashdata('alert', '<div class="alert alert-success alert-dismissable">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                Item telah dihapus.
-                            </div>');
-		redirect('order/shop/' . $no_order);
+		redirect('pesanan');
 	}
 
 	public function save($no_order)

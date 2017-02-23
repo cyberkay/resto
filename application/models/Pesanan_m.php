@@ -69,7 +69,7 @@ class Pesanan_m extends CI_Model {
                 return $query;
         }
 
-         public function update($id, $status)
+        public function update($id, $status)
         {
                 $this->td_status = $status;
                 $this->db->where('td_id', $id);
@@ -77,11 +77,11 @@ class Pesanan_m extends CI_Model {
                 return $query;
         }
 
-        public function remove($id)
+        public function close($no_order)
         {
-                $this->db->where('td_id', $id);
-                $query = $this->db->delete('transaksi_detail');
-
+                $this->trx_status = 'closed';
+                $this->db->where('trx_code', $no_order);
+                $query = $this->db->update('transaksi', $this);
                 return $query;
         }
 
