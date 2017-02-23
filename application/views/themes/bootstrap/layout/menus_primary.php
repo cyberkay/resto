@@ -45,12 +45,6 @@
 	        </li>
 	        <?php }  ?>
 	      </ul>
-	      <form class="navbar-form navbar-left">
-	        <div class="form-group">
-	          <input type="text" class="form-control" placeholder="Search menus">
-	        </div>
-	        <button type="submit" class="btn btn-default">Search Now</button>
-	      </form>
 	      <ul class="nav navbar-nav navbar-right">
 	        <li><a href="#">Settings</a></li>
 	        <li class="dropdown">
