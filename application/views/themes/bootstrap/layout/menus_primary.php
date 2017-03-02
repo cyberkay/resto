@@ -38,8 +38,8 @@
 	            <li><a href="#">Buku Besar</a></li>
 	            <li><a href="#">Neraca Saldo</a></li>
 	            <li role="separator" class="divider"></li>
-	            <li><a href="#">Laporan Pesanan</a></li>
-	            <li><a href="#">Laporan Penjualan</a></li>
+	            <li><a href="<?= base_url('pesanan') ?>">Laporan Pesanan</a></li>
+	            <li><a href="<?= base_url('laporan/penjualan') ?>">Laporan Penjualan</a></li>
 	            <li><a href="#">Laporan Laba Rugi</a></li>
 	          </ul>
 	        </li>
