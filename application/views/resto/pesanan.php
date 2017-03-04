@@ -21,11 +21,11 @@
 						    <?php if($item->td_status == 4) { ?>
 						    <p><a href="#" class="btn btn-block btn-info" role="button" disabled>Diantar</a></p>	
 						    <?php } elseif($item->td_status == 3) { ?>
-						    <p><a href="<?= base_url('pesanan/update') ?>/<?= $item->td_id; ?>/<?= $item->td_status+1; ?>" class="btn btn-block btn-success" onClick="return confirm('Anda akan mengantar pesanan ?')" role="button">Antar</a></p>
+						    <p><a href="<?= base_url('pesanan/update') ?>/<?= $item->td_id; ?>/<?= $item->td_status+1; ?>" class="btn btn-block btn-success" onClick="return confirm('Anda akan mengantar pesanan ?')" role="button" <?= ($_SESSION['res_level'] != 4) ? 'disabled' : '' ; ?>>Antar</a></p>
 						    <?php } elseif($item->td_status == 2) { ?>
-						    <p><a href="<?= base_url('pesanan/update') ?>/<?= $item->td_id; ?>/<?= $item->td_status+1; ?>" class="btn btn-block btn-primary" onClick="return confirm('Pesanan siap disajikan ?')" role="button">Tersaji</a></p>
+						    <p><a href="<?= base_url('pesanan/update') ?>/<?= $item->td_id; ?>/<?= $item->td_status+1; ?>" class="btn btn-block btn-primary" onClick="return confirm('Pesanan siap disajikan ?')" role="button" <?= (($_SESSION['res_level'] != 6) && ($_SESSION['res_level'] != 5)) ? 'disabled' : '' ; ?>>Tersaji</a></p>
 						    <?php } elseif($item->td_status == 1) { ?>
-						    <p><a href="<?= base_url('pesanan/update') ?>/<?= $item->td_id; ?>/<?= $item->td_status+1; ?>" onClick="return confirm('Anda akan memproses pesanan ?')" class="btn btn-block btn-default" role="button">Process</a></p>
+						    <p><a href="<?= base_url('pesanan/update') ?>/<?= $item->td_id; ?>/<?= $item->td_status+1; ?>" onClick="return confirm('Anda akan memproses pesanan ?')" class="btn btn-block btn-default" role="button" <?= (($_SESSION['res_level'] != 6) && ($_SESSION['res_level'] != 5)) ? 'disabled' : '' ; ?>>Process</a></p>
 						    <?php } ?>
 						</div>
 					</div>

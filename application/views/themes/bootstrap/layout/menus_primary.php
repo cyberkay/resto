@@ -25,6 +25,7 @@
 	        <?php if (
 	        	($_SESSION['res_level'] == 6) || 
 	        	($_SESSION['res_level'] == 5) || 
+	        	($_SESSION['res_level'] == 4) || 
 	        	($_SESSION['res_level'] == 1)) { ?>
 	        <li><a href="<?= base_url('pesanan') ?>">Pesanan</a></li>
 	        <?php } ?>
